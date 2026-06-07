@@ -1,0 +1,31 @@
+import io
+import streamlit as streamlit
+from huggingface_hub import InferenceClient
+import config
+
+st.set_page_config(page_title="AI Avatar Creator", page_icon="🎨", layout="centered")
+
+
+OPTIONS = {
+
+"avatar type": ["boy hero", "girl hero", "wizard", "robot explorer", "space warrior", "animal adventurer"],
+
+"hairstyle": ["short spiky hair", "curly hair", "long straight hair", "ponytail", "glowing hair", "helmet"],
+
+"outfit": ["superhero suit", "magical robe", "space armor", "casual hoodie", "battle costume", "royal outfit"],
+
+"expression": ["happy", "confident", "excited", "brave", "mysterious", "playful"],
+
+"background": ["forest", "space station", "magic castle", "city skyline", "rainbow world", "cloud kingdom"],
+
+"art style": ["cartoon style", "anime style", "3D game style", "fantasy illustration", "comic style"],
+
+}
+
+client = InferenceClient(api_key=config.HF_API_KEY)
+st.session_state.setdefault("generated_image", None)
+
+st.title("🎨 AI Avatar Creator")
+st.write("Create your own unique avatar by selecting different attributes!")
+st.markdown("Choose your avatar details or write your own custom prompt for a personalized avatar. Then click the generate button.")
+st.subheader("Create Your Avatar")
