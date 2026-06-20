@@ -1,5 +1,5 @@
 import io
-import streamlit as streamlit
+import streamlit as st
 from huggingface_hub import InferenceClient
 import config
 
@@ -35,22 +35,31 @@ mode = st.selectbox ('Choose Prompt Mode' , ['Use Avatar Builder', 'Write Custom
 if mode == 'Use Avatar Builder':
     values = {k: st.selectbox(f'Choose {k}:', v) for k, v in OPTIONS.items()}
     extra = st.text_input("Or add extra details (optional):", placeholder="e.g., glowing eyes, futuristic background")
-    prompt = (
-        f"A kid friendly {values['avatar type']}"
-        f"with {values['hairstyle']} "
-        f"wearing a {values['outfit']}"
-        f"with a {values['expression']} expression"
-        f" set against a {values['background']} colorful, digital highly detailed background"
-        f"in a {values['art style']} art style. {extra}"
-    )
-    final_prompt = f("prompt", "extra") if extra else prompt
+
+prompt = (
+
+f"A kid friendly {values['avatar type']} "
+
+f"with {values['hairstyle']} "
+
+f"wearing a {values['outfit']} "
+
+f"with a {values['expression']} expression "
+
+f"set against a {values['background']} colorful, digital highly detailed background "
+
+f"in a {values['art style']} art style. {extra}"
+
+)
+    final_prompt = f"{prompt} {extra}" if extra else prompt
 else:
     final_prompt = st.text_area("Enter your custom prompt:", placeholder="e.g., A futuristic robot with neon lights in a cyberpunk cityscape, digital art style", height =150).strip()
     
     with st.expander("See Final Prompt"):
         st.write(final_prompt or "your final prompt will appear here once you generate the image")
 
-    if st.button("Generate Avatar"):
+if st.button("Generate Avatar"):
+    
         if not config.HF_API_KEY:
             st.error("Please set your Hugging Face API key in the .env file.")
         elif not final_prompt:
