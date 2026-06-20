@@ -36,22 +36,23 @@ if mode == 'Use Avatar Builder':
     values = {k: st.selectbox(f'Choose {k}:', v) for k, v in OPTIONS.items()}
     extra = st.text_input("Or add extra details (optional):", placeholder="e.g., glowing eyes, futuristic background")
 
-prompt = (
+    prompt = (
 
-f"A kid friendly {values['avatar type']} "
+    f"A kid friendly {values['avatar type']} "
 
-f"with {values['hairstyle']} "
+    f"with {values['hairstyle']} "
 
-f"wearing a {values['outfit']} "
+    f"wearing a {values['outfit']} "
 
-f"with a {values['expression']} expression "
+    f"with a {values['expression']} expression "
 
-f"set against a {values['background']} colorful, digital highly detailed background "
+    f"set against a {values['background']} colorful, digital highly detailed background "
 
-f"in a {values['art style']} art style. {extra}"
+    f"in a {values['art style']} art style. {extra}"
 
-)
-final_prompt = f"{prompt} {extra}" if extra else prompt
+    )
+    final_prompt = f"{prompt} {extra}" if extra else prompt
+
 else:
     final_prompt = st.text_area("Enter your custom prompt:", placeholder="e.g., A futuristic robot with neon lights in a cyberpunk cityscape, digital art style", height =150).strip()
     
