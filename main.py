@@ -44,8 +44,8 @@ if mode == 'Use Avatar Builder':
         f"in a {values['art style']} art style. {extra}"
     )
     final_prompt = f("prompt", "extra") if extra else prompt
-    else:
-        final_prompt = st.text_area("Enter your custom prompt:", placeholder="e.g., A futuristic robot with neon lights in a cyberpunk cityscape, digital art style", height =150).strip()
+else:
+    final_prompt = st.text_area("Enter your custom prompt:", placeholder="e.g., A futuristic robot with neon lights in a cyberpunk cityscape, digital art style", height =150).strip()
     
     with st.expander("See Final Prompt"):
         st.write(final_prompt or "your final prompt will appear here once you generate the image")
