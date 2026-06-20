@@ -76,12 +76,12 @@ if st.button("Generate Avatar"):
                 except Exception as e:
                     st.error(f"Error generating avatar: {e}")
 
-    if st.session_state.generated_image:
-        st.image(st.session_state.generated_image, caption="Your AI Avatar", use_container_width=True)
-        buffer = io.BytesIO()
-        st.session_state.generated_image.save(buffer, format="PNG")
-        st.download_button(
-            "Download Avatar",
+if st.session_state.generated_image:
+    st.image(st.session_state.generated_image, caption="Your AI Avatar", use_container_width=True)
+    buffer = io.BytesIO()
+    st.session_state.generated_image.save(buffer, format="PNG")
+    st.download_button(
+        "Download Avatar",
             data=buffer.getvalue(),
             file_name="ai_avatar.png",
             mime="image/png"
