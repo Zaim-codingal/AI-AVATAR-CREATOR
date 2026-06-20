@@ -51,7 +51,7 @@ f"set against a {values['background']} colorful, digital highly detailed backgro
 f"in a {values['art style']} art style. {extra}"
 
 )
-    final_prompt = f"{prompt} {extra}" if extra else prompt
+final_prompt = f"{prompt} {extra}" if extra else prompt
 else:
     final_prompt = st.text_area("Enter your custom prompt:", placeholder="e.g., A futuristic robot with neon lights in a cyberpunk cityscape, digital art style", height =150).strip()
     
@@ -59,7 +59,7 @@ else:
         st.write(final_prompt or "your final prompt will appear here once you generate the image")
 
 if st.button("Generate Avatar"):
-    
+
         if not config.HF_API_KEY:
             st.error("Please set your Hugging Face API key in the .env file.")
         elif not final_prompt:
